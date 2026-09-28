@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #faf7f1;
+  --paper: #ffffff;
+  --line: #e3dac7;
+  --muted: #6e6659;
+  --fog: #1d1a14;
+  --accent: #2b44e4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--fog);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* thin editorial rules */
+.rule {
+  border-color: var(--line);
+}
+
+/* visible focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* faint technical grid — used sparingly behind diagrams, never behind type */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgba(74, 60, 32, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(74, 60, 32, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* animated dash = data flow. Paused under reduced motion. */
+@keyframes dashflow {
+  to { stroke-dashoffset: -28; }
+}
+.flow {
+  stroke-dasharray: 5 9;
+  animation: dashflow 2.6s linear infinite;
+}
+.flow-slow {
+  stroke-dasharray: 3 10;
+  animation: dashflow 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .flow, .flow-slow { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  background: var(--accent);
+  color: #ffffff;
+  padding: 8px 14px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+}
