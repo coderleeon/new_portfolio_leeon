@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { TopologyHero } from "@/components/TopologyHero";
 import { SystemMap } from "@/components/SystemMap";
 import { ProjectSystem } from "@/components/ProjectSystem";
@@ -6,21 +5,14 @@ import { ExperienceTimeline } from "@/components/Experience";
 import { ResearchArchive } from "@/components/ResearchArchive";
 import { CapabilitySection } from "@/components/CapabilityMap";
 import { About, Footer } from "@/components/About";
+import { AmbientLayer } from "@/components/AmbientLayer";
 import { SectionHeading } from "@/components/primitives";
 import { projects } from "@/data/content";
-
-const SystemField = dynamic(() => import("@/components/SystemField").then((m) => m.SystemField), {
-  ssr: false,
-});
-const CursorHint = dynamic(() => import("@/components/CursorHint").then((m) => m.CursorHint), {
-  ssr: false,
-});
 
 export default function Home() {
   return (
     <>
-      <SystemField />
-      <CursorHint />
+      <AmbientLayer />
       <main id="main" className="relative z-10">
         <TopologyHero />
         <SystemMap />
