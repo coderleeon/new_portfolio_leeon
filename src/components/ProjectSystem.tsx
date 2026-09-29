@@ -16,6 +16,9 @@ const BenchDemo = dynamic(() => import("./demos/BenchDemo").then((m) => m.BenchD
 const IssueDemo = dynamic(() => import("./demos/IssueDemo").then((m) => m.IssueDemo), {
   loading: () => <DemoLoading />,
 });
+const OccurDemo = dynamic(() => import("./demos/OccurDemo").then((m) => m.OccurDemo), {
+  loading: () => <DemoLoading />,
+});
 
 function DemoLoading() {
   return <p className="py-10 text-center text-sm text-muted">Loading interactive demonstration…</p>;
@@ -26,6 +29,7 @@ const demos: Record<Project["id"], ComponentType<any>> = {
   researchpilot: ResearchDemo,
   benchlytics: BenchDemo,
   opensourcepilot: IssueDemo,
+  occur: OccurDemo,
 };
 
 /**
@@ -68,6 +72,18 @@ export function ProjectSystem({ project }: { project: Project }) {
             <span className="font-medium text-fog">Stack · </span>
             {project.stack.join("  ·  ")}
           </p>
+          {project.link && (
+            <p className="mt-3 text-[12px] tracking-wide">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="text-fog underline decoration-line underline-offset-4 transition-colors hover:text-accent"
+              >
+                {project.linkLabel ?? "Repository"} ↗
+              </a>
+            </p>
+          )}
         </div>
 
         {/* right: live demonstration */}

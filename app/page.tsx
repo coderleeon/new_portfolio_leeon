@@ -22,7 +22,7 @@ export default function Home() {
             <SectionHeading
               kicker="Work"
               title="Systems, not screenshots."
-              blurb="Four production-oriented builds from the resume. Each one runs — send a trace, run a benchmark, analyze an issue."
+              blurb="Five production-oriented builds. Each one runs — send a trace, run a benchmark, analyze an issue, run a pipeline."
             />
             <div className="space-y-8 md:space-y-12">
               {projects.map((p) => (

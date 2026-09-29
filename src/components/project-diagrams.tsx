@@ -159,3 +159,33 @@ export function OpenSourceDiagram({ active }: { active: string }) {
     </svg>
   );
 }
+
+export function OccurDiagram({ active }: { active: string }) {
+  const steps = [
+    { id: "collect", label: "COLLECT" },
+    { id: "normalize", label: "NORMALIZE" },
+    { id: "dedup", label: "DEDUP" },
+    { id: "store", label: "STORE" },
+    { id: "match", label: "MATCH" },
+    { id: "export", label: "EXPORT" },
+  ];
+  return (
+    <svg viewBox="0 0 720 220" className="h-auto w-full" role="img" aria-label="Occur job pipeline diagram">
+      {steps.map((s, i) => {
+        const x = 8 + i * 119;
+        const on = active === s.id;
+        return (
+          <g key={s.id} opacity={active && !on ? 0.35 : 1}>
+            <rect x={x} y={70} width={106} height={60} fill={on ? WASH : BG} stroke={on ? ACCENT : STROKE} strokeWidth={on ? 1.75 : 1} />
+            <text x={x + 53} y={98} textAnchor="middle" fill={on ? ACCENT : TEXT} fontSize="10" fontFamily={MONO} letterSpacing="1">{s.label}</text>
+            <text x={x + 53} y={116} textAnchor="middle" fill={FAINT} fontSize="9" fontFamily={MONO}>J.0{i + 1}</text>
+            {i < steps.length - 1 && (
+              <path d={`M${x + 106} 100 H${x + 119}`} stroke={active === steps[i + 1].id ? ACCENT : IDLE} strokeWidth="1.25" className="flow" />
+            )}
+          </g>
+        );
+      })}
+      <text x={10} y={170} fill={FAINT} fontSize="9.5" fontFamily={MONO} letterSpacing="1.5">PYTHON · SQLITE · EXCEL · TELEGRAM OPT-IN</text>
+    </svg>
+  );
+}

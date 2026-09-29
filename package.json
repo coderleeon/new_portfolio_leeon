@@ -7,21 +7,34 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "dev:vinext": "vite dev --port 3001",
+    "build:vinext": "vite build",
+    "start:vinext": "vite preview",
+    "deploy:vinext": "vinext-cloudflare deploy"
   },
   "dependencies": {
-    "framer-motion": "11.11.9",
+    "@vinext/cloudflare": "^1.0.0",
+    "framer-motion": "12.43.0",
     "next": "15.5.24",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-server-dom-webpack": "^19.3.0",
+    "vinext": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.16.13",
-    "@types/react": "18.3.11",
-    "@types/react-dom": "18.3.1",
+    "@cloudflare/vite-plugin": "^1.62.0",
+    "@types/node": "20.19.43",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@vitejs/plugin-rsc": "^0.5.35",
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
     "tailwindcss": "3.4.13",
-    "typescript": "5.6.2"
-  }
+    "typescript": "5.6.2",
+    "vite": "^8.3.1",
+    "wrangler": "^4.143.0"
+  },
+  "type": "module"
 }

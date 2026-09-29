@@ -22,7 +22,7 @@ export const pipelineStages = [
   { id: "observability", label: "OBSERVABILITY" },
 ] as const;
 
-export type ProjectId = "omnira" | "researchpilot" | "benchlytics" | "opensourcepilot";
+export type ProjectId = "omnira" | "researchpilot" | "benchlytics" | "opensourcepilot" | "occur";
 
 export interface ProjectStage {
   id: string;
@@ -39,6 +39,8 @@ export interface Project {
   points: string[];
   stages: ProjectStage[];
   architecture: string;
+  link?: string;
+  linkLabel?: string;
 }
 
 export const projects: Project[] = [
@@ -116,6 +118,28 @@ export const projects: Project[] = [
       { id: "plan", label: "Contribution planning", detail: "Issue-specific plans are drafted from retrieved context." },
       { id: "test", label: "Test generation", detail: "Automated tests accompany the proposed change." },
       { id: "pr", label: "PR drafting", detail: "Pull-request drafts go out through GitHub APIs." },
+    ],
+  },
+  {
+    id: "occur",
+    index: "05",
+    name: "Occur",
+    subtitle: "Local-First Job Discovery Engine",
+    stack: ["Python", "SQLite", "openpyxl", "PyYAML", "pytest"],
+    points: [
+      "Built a local-first, zero-cost job discovery system that collects AI/ML/Data Science jobs from permitted public sources (Greenhouse, Ashby, Lever, Himalayas, Jobicy).",
+      "Implemented normalization, deduplication, SQLite persistence, rule-based relevance filtering with deterministic 0–100 match scoring, Excel ↔ SQLite application tracking, and optional Telegram notifications.",
+    ],
+    architecture: "sources → normalize → dedup → SQLite → match → export",
+    link: "https://github.com/coderleeon/occur",
+    linkLabel: "github.com/coderleeon/occur",
+    stages: [
+      { id: "collect", label: "Source collection", detail: "Public ATS adapters fetch permitted postings from Greenhouse, Ashby, Lever, Himalayas, and Jobicy." },
+      { id: "normalize", label: "Normalization", detail: "Postings are normalized into one consistent job model regardless of source." },
+      { id: "dedup", label: "Deduplication", detail: "Deterministic keys keep re-fetched jobs from creating duplicate records." },
+      { id: "store", label: "SQLite store", detail: "The local database is the single source of truth for jobs and statuses." },
+      { id: "match", label: "Rule-based matching", detail: "Deterministic 0–100 scoring filters by role, experience, and location — fully explainable, no ML model." },
+      { id: "export", label: "Excel export", detail: "Relevant jobs export to per-source workbooks, with statuses synced back to SQLite." },
     ],
   },
 ];
@@ -243,7 +267,7 @@ export const education = [
 ];
 
 export const navNodes = [
-  { id: "work", no: "01", label: "WORK", href: "#work", desc: "4 systems" },
+  { id: "work", no: "01", label: "WORK", href: "#work", desc: "5 systems" },
   { id: "research", no: "02", label: "RESEARCH", href: "#research", desc: "3 papers" },
   { id: "experience", no: "03", label: "EXPERIENCE", href: "#experience", desc: "2 roles" },
   { id: "systems", no: "04", label: "SYSTEMS", href: "#systems", desc: "5 capabilities" },
