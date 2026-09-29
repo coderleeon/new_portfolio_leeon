@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
+import { FaviconAnimator } from "@/components/FaviconAnimator";
 
 export const metadata: Metadata = {
   title: "Leeon John — AI Engineer",
   description:
     "Leeon John builds production-grade LLM, agentic AI, and ML systems. RAG, semantic retrieval, evaluation, observability.",
   metadataBase: new URL("https://leeonjohn.in"),
+  icons: {
+    icon: [{ url: "/favicon/frame-1-identity.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-ink text-fog font-sans">
+        <FaviconAnimator />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
